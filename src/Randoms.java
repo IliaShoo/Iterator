@@ -1,14 +1,10 @@
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Randoms implements Iterable<Integer> {
 
     protected Random random = new Random();
-    List<Integer> list = new ArrayList<>();
+    List<Integer> list = new LinkedList<>();
 
     public Randoms(int min, int max) {
         int diff = max - min;
@@ -16,10 +12,6 @@ public class Randoms implements Iterable<Integer> {
             int result = random.nextInt(diff + 1);
             result += min;
             list.add(result);
-            if (result == 100) {
-                list.add(result);
-                break;
-            }
         }
     }
 
@@ -30,7 +22,7 @@ public class Randoms implements Iterable<Integer> {
 
             @Override
             public boolean hasNext() {
-                if (index < list.size()) {
+                if (!list.isEmpty()) {
                     return true;
                 } else {
                     return false;
@@ -46,8 +38,10 @@ public class Randoms implements Iterable<Integer> {
                     return number;
                 }
                 return 0;
+
             }
+
         };
+
     }
 }
-
